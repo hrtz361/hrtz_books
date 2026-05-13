@@ -2,57 +2,57 @@
 #include <fstream>
 #include <string>
 #include <limits> // Required for numeric_limits
-
+using namespace std; 
 class Book {
 public:
-    std::string title;
-    std::string author;
+     string title;
+     string author;
     int year;
 
-    std::string toFileFormat() const {
-        return title + " | " + author + " | " + std::to_string(year);
+     string toFileFormat() const {
+        return title + " | " + author + " | " +  to_string(year);
     }
 };
 
 int main() {
     int objectCount;
-    std::string filename = "library.txt";
+     string filename = "library.txt";
 
-    std::cout << "How many new books would you like to add? ";
-    if (!(std::cin >> objectCount)) {
-        std::cerr << "Invalid input." << std::endl;
+     cout << "How many new books would you like to add? ";
+    if (!( cin >> objectCount)) {
+         cerr << "Invalid input." <<  endl;
         return 1;
     }
 
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+     cin.ignore( numeric_limits< streamsize>::max(), '\n');
 
-    // Opening with std::ios::app ensures new data is added to the end
-    std::ofstream outFile(filename, std::ios::app); 
+    // Opening with  ios::app ensures new data is added to the end
+     ofstream outFile(filename,  ios::app); 
     
     if (!outFile.is_open()) {
-        std::cerr << "Error: Could not open file." << std::endl;
+         cerr << "Error: Could not open file." <<  endl;
         return 1;
     }
 
     for (int i = 0; i < objectCount; ++i) {
         Book tempBook;
-        std::cout << "\n--- Book #" << (i + 1) << " ---" << std::endl;
+         cout << "\n--- Book #" << (i + 1) << " ---" <<  endl;
 
-        std::cout << "Title: ";
-        std::getline(std::cin, tempBook.title);
+         cout << "Title: ";
+         getline( cin, tempBook.title);
 
-        std::cout << "Author: ";
-        std::getline(std::cin, tempBook.author);
+         cout << "Author: ";
+         getline( cin, tempBook.author);
 
-        std::cout << "Year: ";
-        std::cin >> tempBook.year;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+         cout << "Year: ";
+         cin >> tempBook.year;
+         cin.ignore( numeric_limits< streamsize>::max(), '\n');
 
-        outFile << tempBook.toFileFormat() << std::endl;
+        outFile << tempBook.toFileFormat() <<  endl;
     }
 
     outFile.close();
-    std::cout << "\nData successfully appended to " << filename << std::endl;
+     cout << "\nData successfully appended to " << filename <<  endl;
 
     return 0;
 }

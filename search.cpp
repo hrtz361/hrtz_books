@@ -2,41 +2,41 @@
 #include <fstream>
 #include <string>
 #include <regex>
-
+using namespace std; 
 class book{
 	public:
-		int search(std::string pattern); 
+		int search( string pattern); 
 
 };
 
 
-int book::search(std::string pattern){
-    std::string filename = "input.txt";
+int book::search( string pattern){
+     string filename = "library.txt";
     
-    std::ifstream file(filename);
+     ifstream file(filename);
     
     // Check if the file opened successfully
     if (!file.is_open()) {
-        std::cerr << "Could not open the file - '" << filename << "'" << std::endl;
+         cerr << "Could not open the file - '" << filename << "'" <<  endl;
         return 1;
     }
 
     try {
-        std::regex re(pattern);
-        std::string line;
+         regex re(pattern);
+         string line;
         int line_number = 0;
 
-        std::cout << "Searching for pattern: " << pattern << "\n" << std::string(30, '-') << std::endl;
+         cout << "Searching for pattern: " << pattern << "\n" <<  string(30, '-') <<  endl;
 
-        while (std::getline(file, line)) {
+        while ( getline(file, line)) {
             line_number++;
             // Check if the line matches the regex pattern
-            if (std::regex_search(line, re)) {
-                std::cout << "Line " << line_number << ": " << line << std::endl;
+            if ( regex_search(line, re)) {
+                 cout << "Line " << line_number << ": " << line <<  endl;
             }
         }
-    } catch (const std::regex_error& e) {
-        std::cerr << "Invalid regex pattern: " << e.what() << std::endl;
+    } catch (const  regex_error& e) {
+         cerr << "Invalid regex pattern: " << e.what() <<  endl;
         return 1;
     }
 
@@ -46,6 +46,9 @@ int book::search(std::string pattern){
 
 int main(){ 
 book A; 
-A.search("ha"); 
+string pattern; 
+cout << "search name: "; 
+cin >> pattern; 
+A.search(pattern); 
     return 0;
 }
