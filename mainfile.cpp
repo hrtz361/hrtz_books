@@ -2,8 +2,6 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include <thread> // :qFor sleep
-#include <chrono> // For time durations
 #include <regex> 
 #include <limits> 
 #include <set>
@@ -97,8 +95,7 @@ void clearScreen() {
 
 // Helper function to pause for 5 seconds
 void pauseExecution() {
-    cout << "\nPausing for 5 seconds to let you review..." << endl;
-    this_thread::sleep_for(chrono::seconds(5));
+    system("pause"); 
 }
 
 
