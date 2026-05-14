@@ -137,7 +137,7 @@ public:
     void displayFile();       
     void editORdelete(bool isDelete); 
     friend void search(string pattern); 
-//    virtual double calculateRentalFee(int NUM); 
+    virtual double calculateRentalFee(double price); 
 };
 
 
@@ -162,32 +162,22 @@ public:
     void input() override;
 };
 
-class BorrowTicket {
-public:
-    static void inputData();
-    static void displayData();
-    static void updateData();
-    static void calculateOverdueFeature();
-    static void calculateLostFeature();
-    static void searchKeyword(string key);
-    static void findMostBorrowedBook(); // New Analysis Feature
-    static double calculateRentalFee(double price) { return price * 0.04; }
-};
-
-/*
 class BorrowTicket: public Book , public Reader {
-private: 
-
-    string ticketID,borrowDate,returnDate,dueDate; 
 public:
-    double calculateRentalFee(int NUM2) override; 
+    void inputData();
+    void displayData();
+    void updateData();
+    void calculateOverdueFeature();
+    void calculateLostFeature();
+    void searchKeyword(string key);
+    static void findMostBorrowedBook();
+    double calculateRentalFee(double price) override; 
 };
-*/ 
 
 // ==========================================
 // 2. FUNCTION IMPLEMENTATIONS
 // ==========================================
-
+double BorrowTicket::calculateRentalFee(double price){ return price * 0.04; };
 
 void BorrowTicket::searchKeyword(string key) {
     ifstream inFile("borrow.txt");
@@ -235,8 +225,8 @@ void BorrowTicket::inputData() {
     cout << "Ticket ID: "; getline(cin, tID);
     cout << "Reader ID: "; getline(cin, rID);
     cout << "Book ID: "; getline(cin, bID);
-    
-    // New: Register unique ID in bookid.txt
+    //add unique ID to bookid.txt
+
     registerBookID(bID);
 
     cout << "Price: "; cin >> price;
@@ -270,7 +260,7 @@ void BorrowTicket::calculateOverdueFeature() {
     cout << "Days: "; cin >> days;
 
     if (target > 0 && target <= (int)lines.size()) {
-        double fee = days * price * 0.1;
+        double fee = days * price * 0.1 ; 
         lines[target - 1] = "OVERDUEFEE: " + to_string(fee) + " | " + lines[target - 1];
         ofstream outFile("borrow.txt");
         for (const string& s : lines) outFile << s << endl;
@@ -293,7 +283,7 @@ void BorrowTicket::calculateLostFeature() {
     cout << "Book Price: "; cin >> price;
 
     if (target > 0 && target <= (int)lines.size()) {
-        double fee = price * 2; // Logic: price * 2
+        double fee = price * 2; 
         lines[target - 1] = "LOSTFEE: " + to_string(fee) + " | " + lines[target - 1];
         
         ofstream outFile("borrow.txt");
@@ -343,7 +333,6 @@ void BorrowTicket::findMostBorrowedBook() {
     cout << "RESULT: Book " << mostMatchedID << " is the most borrowed (" << maxMatches << " times).\n";
 }
 
-// ... rest of existing methods (displayData, updateData, searchKeyword, etc.) ...
 
 void BorrowTicket::displayData() {
     ifstream inFile("borrow.txt");
@@ -355,7 +344,7 @@ void BorrowTicket::displayData() {
 ////////////////////////////////////////////////////
 void Person::input() {
     cout << "Enter Full Name: "; 
-    getline(cin >> ws, fullName); // ws clears leading whitespace/newlines
+    getline(cin >> ws, fullName);
     
     cout << "Gender: "; 
     getline(cin >> ws, gender);
@@ -363,7 +352,7 @@ void Person::input() {
     cout << "Birth Year: "; 
     cin >> birthYear; 
     cout << "Phone: "; 
-    getline(cin >> ws, phoneNumber); // Fixed: This will now wait for your input
+    getline(cin >> ws, phoneNumber); 
 }
 
 void Person::display() {
@@ -485,6 +474,10 @@ void Book::editORdelete(bool isDelete) {
         cout << "\n[!] Error: Line not found.\n";
     }
 }
+double Book::calculateRentalFee(double value){
+	return value * 0.04;
+}
+
 ///////////////////////////////////////////////
 void PrintedBook::input() {
     Book::input();
