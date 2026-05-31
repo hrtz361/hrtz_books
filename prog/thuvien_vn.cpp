@@ -549,20 +549,20 @@ void blockReader(int lineNum) {
 
 void displayMenu() {
     clearScreen(); 
-    cout << "==================================================================================" << endl;
+    cout << "========================================================================" << endl;
     cout << "                         HE THONG QUAN LY THU VIEN" << endl;
-    cout << "==================================================================================" << endl;
+    cout << "========================================================================" << endl;
 
-    int w = 32;
+    int w = 20;
     cout << left 
          << setw(w) << "1. Them Sach In"         << setw(w) << "7. Them Nguoi Doc"       << setw(w) << "13. Tinh Phi Qua Han" << endl
          << setw(w) << "2. Them E-Book"          << setw(w) << "8. In DS Nguoi Doc"      << setw(w) << "14. Tinh Phi Mat Sach" << endl
-         << setw(w) << "3. Sua Thong Tin Sach"   << setw(w) << "9. Gia Han The Doc"      << setw(w) << "15. Tim DS Qua Han" << endl
+         << setw(w) << "3. Sua Thong Tin"   << setw(w) << "9. Gia Han The Doc"      << setw(w) << "15. Tim DS Qua Han" << endl
          << setw(w) << "4. Xoa Sach"             << setw(w) << "10. Chan Nguoi Doc"     << setw(w) << "16. Sach Muon Nhieu Nhat" << endl
          << setw(w) << "5. In Tat Ca Sach"       << setw(w) << "11. Them The Muon"       << endl
          << setw(w) << "6. Tim Kiem Sach"        << setw(w) << "12. Cap Nhat The Muon"   << setw(w) << "0. Thoat Chuong Trinh" << endl;
 
-    cout << "==================================================================================" << endl;
+    cout << "========================================================================" << endl;
     cout << "Chon chuc nang: ";
 }
 
@@ -582,22 +582,22 @@ int main() {
             continue;
         }
         switch (choice) {
-            case 1: { PrintedBook pb; pb.input(); pauseExecution(); break; }
-            case 2: { Ebook eb; eb.input(); pauseExecution(); break; }
-            case 3: manager.setFileContext(); manager.editORdelete(false); pauseExecution(); break;
-            case 4: manager.setFileContext(); manager.editORdelete(true); pauseExecution(); break;
-            case 5: manager.setFileContext(); manager.displayFile(); pauseExecution(); break;
-            case 6: cout << "Nhap tu khoa tim kiem: "; cin >> pat; search(pat); pauseExecution(); break;  
-            case 7: r.input(); saveToFile(r); pauseExecution(); break;
-            case 8: displayFromFile(); pauseExecution(); break; 
-            case 9: displayFromFile(); extendDueDate(); pauseExecution(); break;
-            case 10: displayFromFile();{ int l; cout << "Nhap so dong nguoi doc can chan: "; cin >> l; blockReader(l); pauseExecution(); break; }
-            case 11: BT.inputData(); pauseExecution(); break; 
-            case 12: BT.updateData(); pauseExecution(); break;
-            case 13: BT.calculateOverdueFeature(); pauseExecution(); break;
-            case 14: BT.calculateLostFeature(); pauseExecution(); break;
-            case 15: BT.searchKeyword("PHIPHAT_QUAHAN:"); pauseExecution(); break; 
-            case 16: BorrowTicket::findMostBorrowedBook(); pauseExecution(); break; 
+            case 1: clearScreen();{ PrintedBook pb; pb.input(); pauseExecution(); break; }
+            case 2: clearScreen();{ Ebook eb; eb.input(); pauseExecution(); break; }
+            case 3: clearScreen();manager.setFileContext(); manager.editORdelete(false); pauseExecution(); break;
+            case 4: clearScreen();manager.setFileContext(); manager.editORdelete(true); pauseExecution(); break;
+            case 5: clearScreen(); manager.setFileContext(); manager.displayFile(); pauseExecution(); break;
+            case 6: clearScreen();cout << "Nhap tu khoa tim kiem: "; cin >> pat; search(pat); pauseExecution(); break;  
+            case 7: clearScreen();r.input(); saveToFile(r); pauseExecution(); break;
+            case 8: clearScreen();displayFromFile(); pauseExecution(); break; 
+            case 9: clearScreen();displayFromFile(); extendDueDate(); pauseExecution(); break;
+            case 10: clearScreen();displayFromFile();{ int l; cout << "Nhap so dong nguoi doc can chan: "; cin >> l; blockReader(l); pauseExecution(); break; }
+            case 11: clearScreen();BT.inputData(); pauseExecution(); break; 
+            case 12: clearScreen();BT.updateData(); pauseExecution(); break;
+            case 13: clearScreen();BT.calculateOverdueFeature(); pauseExecution(); break;
+            case 14: clearScreen();BT.calculateLostFeature(); pauseExecution(); break;
+            case 15: clearScreen();BT.searchKeyword("PHIPHAT_QUAHAN:"); pauseExecution(); break; 
+            case 16: clearScreen();BorrowTicket::findMostBorrowedBook(); pauseExecution(); break; 
             case 0: cout << "\nDang thoat... Tam biet!\n"; break;
             default: cout << "\n[!] Lua chon khong hop le.\n"; pauseExecution();
         }
